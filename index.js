@@ -1,7 +1,23 @@
 const express = require('express')
 const app = express()
+// 3.7 added the morgan middleware
+var morgan = require('morgan')
 
 app.use(express.json())
+// 3.8 configure custom format
+morgan.token('data', function (req, res) { return JSON.stringify(req.body) })
+app.use(
+    morgan(function (tokens, req, res) {
+        return [
+          tokens.method(req, res),
+          tokens.url(req, res),
+          tokens.status(req, res),
+          tokens.res(req, res, 'content-length'), '-',
+          tokens['response-time'](req, res), 'ms',
+          tokens['data'](req, res)
+        ].join(' ')
+      })
+)
 
 let contacts = [
     { 
