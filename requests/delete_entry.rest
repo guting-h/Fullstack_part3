@@ -1,4 +1,4 @@
-DELETE http://localhost:3001/api/persons/1
+DELETE https://arcane-ocean-31476.herokuapp.com/api/persons/1
 
 ###
-GET https://arcane-ocean-31476.herokuapp.com/api/notes
+GET https://arcane-ocean-31476.herokuapp.com/api/persons/7
