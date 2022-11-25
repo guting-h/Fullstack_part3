@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 // 3.7 added the morgan middleware
 var morgan = require('morgan')
+const cors = require('cors')
 
 app.use(express.json())
 // 3.8 configure custom format
@@ -18,6 +19,7 @@ app.use(
         ].join(' ')
       })
 )
+app.use(cors())
 
 let contacts = [
     { 
@@ -101,7 +103,7 @@ app.post('/api/persons', (request, response) => {
     response.json(contacts)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-    console.log(`server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT}`)
 })
