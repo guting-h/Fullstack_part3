@@ -2,3 +2,9 @@ DELETE https://arcane-ocean-31476.herokuapp.com/api/persons/1
 
 ###
 GET https://arcane-ocean-31476.herokuapp.com/api/persons/7
+
+###
+GET http://localhost:3001/api/persons
+
+###
+GET http://localhost:3001/api/persons/6381e1d390d9caf00ac12132
