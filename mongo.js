@@ -7,7 +7,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://notes-app-full:${password}@cluster1.lvvbt.mongodb.net/?retryWrites=true&w=majority`
+const url = `mongodb+srv://constantz:${password}@fullstackopen.vsnbo7l.mongodb.net/phonebook?retryWrites=true&w=majority`
 
 const personSchema = new mongoose.Schema({
   name: String,
@@ -18,10 +18,11 @@ const Person = mongoose.model('Person', personSchema)
 
 mongoose.connect(url)
 
-if (process.argv.length === 2) {
-    Note.find({}).then(result => {
-        result.forEach(note => {
-          console.log(note)
+if (process.argv.length === 3) {
+    Person.find({}).then(result => {
+        console.log("phonebook: ")
+        result.forEach(person => {
+          console.log(person.name, person.number)
         })
         mongoose.connection.close()
     })
@@ -33,14 +34,15 @@ if (process.argv.length === 2) {
         .then((result) => {
             console.log('connected')
 
-            const note = new Note({
-                name: proc
+            const person = new Person({
+                name: name,
+                number: number
             })
 
-            return note.save()
+            return person.save()
         })
         .then(() => {
-            console.log('note saved!')
+            console.log(`added ${name} number ${number} to phonebook`)
             return mongoose.connection.close()
         })
         .catch((err) => console.log(err))
